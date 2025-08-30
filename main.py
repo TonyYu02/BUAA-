@@ -3,8 +3,6 @@ import requests
 from bs4 import BeautifulSoup
 from tabulate import tabulate
 
-timestamp = int(time.time() * 1000)
-
 authen = {
     'username': '',
     'password': '',
@@ -34,6 +32,7 @@ login_data = {
 response = session.post("https://sso.buaa.edu.cn/login", data=login_data)
 
 base_url="https://yjsxk.buaa.edu.cn/yjsxkapp/sys/xsxkappbuaa/xsxkCourse/loadAllCourseInfo.do?"
+timestamp = int(time.time() * 1000)
 new_url = base_url + "_=" + str(timestamp)
 
 response = session.get(new_url, headers=headers)
@@ -55,4 +54,5 @@ for course in courses["datas"]:
         cours.append([course['KCMC'],course['KCXF'],course['KXRS'],course['YXXKJGRS']])
 
 print(tabulate(cours, head, tablefmt="fancy_grid"))
+
 
