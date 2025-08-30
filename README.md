@@ -20,13 +20,7 @@
     'password': ,
    }
    ```
-4. 填写需要查询课程的WID
-    ```
-    wids = [
-    "37EAB9942C577EA3E0630111FE0A1940",
-    ]
-    ```
-5. 运行  
+4. 运行  
    run main.py  
    对于windows cmd
    ```
@@ -34,7 +28,7 @@
    call %pathtoPython%\python.exe "%pathtosrc%\main.py"
    pause
    ```
-6. 效果  
+5. 效果  
    ![result](new_result.png)
 
 
