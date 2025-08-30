@@ -2,16 +2,9 @@
 因为每次都要去已开课查询，很不方便，写了一个这个。实现思路很简单，就是最简单的查表，所以效率不高，但够用了。
 
 **实验性**，仅用于学术交流，同时**不保证**安全性，请按照学校规定使用。
-
-### 获取WID
-1. 打开选课网址，登录好，按`F12`打开开发者工具，点击“已开课程查询”，获取url  
-   形如`https://yjsxk.buaa.edu.cn/yjsxkapp/sys/xsxkappbuaa/xsxkCourse/loadAllCourseInfo.do?_=时间戳`  
-   ![url](url.png)
-2. 修改网址为  
-   `https://yjsxk.buaa.edu.cn/yjsxkapp/sys/xsxkappbuaa/xsxkCourse/loadAllCourseInfo.do?_=时间戳&pageSize=2367`  
-   这边2367就是当前所有课程总数"total":2367  
-3. 按`Ctrl+F`搜索，选择正确的课程即可获取WID  
-P.S. 这个思路和代码实现逻辑一样，获取到json同样可以做搜索，这一步感觉可以直接加到代码中。
+### 已添加 
+   - [x] 学分显示
+   - [x] 自动根据已选课程输出
 
 ### 使用方法
 1. 安装依赖
@@ -46,9 +39,6 @@ P.S. 这个思路和代码实现逻辑一样，获取到json同样可以做搜�
 
 
 ### 拓展
-   已添加 
-   - [x] 学分显示
-
    首先，课程信息的格式为：
    ```
    "WID":"8a127fee732e4a5b9a3973dae6bc82ec", #唯一ID
@@ -95,4 +85,14 @@ P.S. 这个思路和代码实现逻辑一样，获取到json同样可以做搜�
   同时学分显示、搜索功能等一系列功能也可以实现。
 
    ~~对于获取cookie的部分，显得有些多余，这是因为一开始是直接加cookie的，后面的版本才用了进程，所以就缝缝补补懒得改了hhh~~
+
+   ### 获取WID（这个已经废弃）
+1. 打开选课网址，登录好，按`F12`打开开发者工具，点击“已开课程查询”，获取url  
+   形如`https://yjsxk.buaa.edu.cn/yjsxkapp/sys/xsxkappbuaa/xsxkCourse/loadAllCourseInfo.do?_=时间戳`  
+   ![url](url.png)
+2. 修改网址为  
+   `https://yjsxk.buaa.edu.cn/yjsxkapp/sys/xsxkappbuaa/xsxkCourse/loadAllCourseInfo.do?_=时间戳&pageSize=2367`  
+   这边2367就是当前所有课程总数"total":2367  
+3. 按`Ctrl+F`搜索，选择正确的课程即可获取WID  
+~~P.S. 这个思路和代码实现逻辑一样，获取到json同样可以做搜索，这一步感觉可以直接加到代码中。~~（已添加）
    
