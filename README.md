@@ -23,7 +23,15 @@
     "37EAB9942C577EA3E0630111FE0A1940",
     ]
     ```
-5. 效果  
+5. 代码
+   run main.py  
+   对于windows cmd
+   ```
+   @echo off
+   call %pathtoPython%\python.exe "%pathtosrc%\main.py"
+   pause
+   ```
+6. 效果  
    ![result](效果.png)
 
 
