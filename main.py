@@ -31,6 +31,17 @@ login_data = {
 
 response = session.post("https://sso.buaa.edu.cn/login", data=login_data)
 
+yx_url="https://yjsxk.buaa.edu.cn/yjsxkapp/sys/xsxkappbuaa/xsxkCourse/loadKbxx.do?sfyx=1&sfjzsyzz=1&_="
+timestamp = int(time.time() * 1000)
+yx_url=yx_url+str(timestamp)
+response = session.get(yx_url, headers=headers)
+yx=response.json()
+
+bjdm=[]
+for nr in yx["rqpkjgallList"]:
+	if nr["bjdm"] not in set(bjdm):
+		bjdm.append(nr["bjdm"])
+
 base_url="https://yjsxk.buaa.edu.cn/yjsxkapp/sys/xsxkappbuaa/xsxkCourse/loadAllCourseInfo.do?"
 timestamp = int(time.time() * 1000)
 new_url = base_url + "_=" + str(timestamp)
@@ -42,17 +53,12 @@ n_url=new_url+"&pageSize="+str(data["total"])
 course=session.get(n_url, headers=headers)
 courses = course.json()
 
-wids = [
-"37EAB9942C577EA3E0630111FE0A1940",
-]
-wid_set = set(wids)
+bjdm_set = set(bjdm)
 
 head = ["课程名称", "学分","容量", "已选"]
 cours=[]
 for course in courses["datas"]:
-    if course["WID"] in wid_set:
+    if course["BJDM"] in bjdm_set:
         cours.append([course['KCMC'],course['KCXF'],course['KXRS'],course['YXXKJGRS']])
 
 print(tabulate(cours, head, tablefmt="fancy_grid"))
-
-
