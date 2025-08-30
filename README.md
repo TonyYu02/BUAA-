@@ -23,7 +23,7 @@
     "37EAB9942C577EA3E0630111FE0A1940",
     ]
     ```
-5. 代码
+5. 运行  
    run main.py  
    对于windows cmd
    ```
