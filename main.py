@@ -32,8 +32,6 @@ login_data = {
 }
 
 response = session.post("https://sso.buaa.edu.cn/login", data=login_data)
-r=session.get("https://yjsxk.buaa.edu.cn/yjsxkapp/sys/xsxkappbuaa/index.html")
-cookies = session.cookies.get_dict()
 
 base_url="https://yjsxk.buaa.edu.cn/yjsxkapp/sys/xsxkappbuaa/xsxkCourse/loadAllCourseInfo.do?"
 new_url = base_url + "_=" + str(timestamp)
@@ -57,3 +55,4 @@ for course in courses["datas"]:
         cours.append([course['KCMC'],course['KCXF'],course['KXRS'],course['YXXKJGRS']])
 
 print(tabulate(cours, head, tablefmt="fancy_grid"))
+
