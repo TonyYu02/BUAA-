@@ -44,13 +44,9 @@ for nr in yx["rqpkjgallList"]:
 
 base_url="https://yjsxk.buaa.edu.cn/yjsxkapp/sys/xsxkappbuaa/xsxkCourse/loadAllCourseInfo.do?"
 timestamp = int(time.time() * 1000)
-new_url = base_url + "_=" + str(timestamp)
+new_url = base_url + "_=" + str(timestamp)+"&pageSize=3000"
 
-response = session.get(new_url, headers=headers)
-data = response.json()
-n_url=new_url+"&pageSize="+str(data["total"])
-
-course=session.get(n_url, headers=headers)
+course=session.get(new_url, headers=headers)
 courses = course.json()
 
 bjdm_set = set(bjdm)
@@ -62,3 +58,4 @@ for course in courses["datas"]:
         cours.append([course['KCMC'],course['KCXF'],course['KXRS'],course['YXXKJGRS']])
 
 print(tabulate(cours, head, tablefmt="fancy_grid"))
+
