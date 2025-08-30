@@ -58,4 +58,4 @@ for course in courses["datas"]:
         cours.append([course['KCMC'],course['KCXF'],course['KXRS'],course['YXXKJGRS']])
 
 print(tabulate(cours, head, tablefmt="fancy_grid"))
-
+session.close()
