@@ -6,8 +6,14 @@ from tabulate import tabulate
 timestamp = int(time.time() * 1000)
 
 authen = {
-    'username': ,
-    'password': ,
+    'username': '',
+    'password': '',
+}
+
+headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
+    'origin': 'https://yjsxk.buaa.edu.cn',
+    'referer' : 'https://yjsxk.buaa.edu.cn/yjsxkapp/sys/xsxkappbuaa/course.html'
 }
 
 session = requests.Session()
@@ -29,25 +35,14 @@ response = session.post("https://sso.buaa.edu.cn/login", data=login_data)
 r=session.get("https://yjsxk.buaa.edu.cn/yjsxkapp/sys/xsxkappbuaa/index.html")
 cookies = session.cookies.get_dict()
 
-headers = {
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36',
-    'origin': 'https://yjsxk.buaa.edu.cn',
-    'referer' : 'https://yjsxk.buaa.edu.cn/yjsxkapp/sys/xsxkappbuaa/course.html'
-}
-
-cookies = {
-'JSESSIONID':cookies['JSESSIONID'],
-'GS_SESSIONID':cookies['GS_SESSIONID']
-}
-
 base_url="https://yjsxk.buaa.edu.cn/yjsxkapp/sys/xsxkappbuaa/xsxkCourse/loadAllCourseInfo.do?"
 new_url = base_url + "_=" + str(timestamp)
 
-response = requests.get(new_url, headers=headers, cookies=cookies)
+response = session.get(new_url, headers=headers)
 data = response.json()
 n_url=new_url+"&pageSize="+str(data["total"])
 
-course=requests.get(n_url, headers=headers, cookies=cookies)
+course=session.get(n_url, headers=headers)
 courses = course.json()
 
 wids = [
@@ -55,10 +50,10 @@ wids = [
 ]
 wid_set = set(wids)
 
-head = ["课程名称", "容量", "已选"]
+head = ["课程名称", "学分","容量", "已选"]
 cours=[]
 for course in courses["datas"]:
     if course["WID"] in wid_set:
-        cours.append([course['KCMC'],course['KXRS'],course['YXXKJGRS']])
+        cours.append([course['KCMC'],course['KCXF'],course['KXRS'],course['YXXKJGRS']])
 
 print(tabulate(cours, head, tablefmt="fancy_grid"))
