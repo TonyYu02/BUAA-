@@ -20,10 +20,11 @@
     'password': '填入密码',
    }
    ```
-4. 运行（提供三种方法）  
-   1. 按`Win+R`，输入`cmd`打开命令行窗口，输入`D:`可以切换到D盘，进入main.py所在路径，如输入`cd D:/Desktop`, 输入`python main.py`即可运行（需要将Python加入到PATH）  
-   2.  直接在项目所在文件夹地址栏输入cmd，或者右键终端打开，输入`python main.py`即可运行  
-   3.  对于windows cmd，可以创建bat文件运行：
+4. 运行（提供四种方法）
+   1. **推荐**直接全下载or git clone下来，直接运行`选课.bat`，前提是安装好Python且加到PATH中。  
+   2. 按`Win+R`，输入`cmd`打开命令行窗口，输入`D:`可以切换到D盘，进入main.py所在路径，如输入`cd D:/Desktop`, 输入`python main.py`即可运行（需要将Python加入到PATH）  
+   3. 直接在项目所在文件夹地址栏输入cmd，或者右键终端打开，输入`python main.py`即可运行  
+   4. 自己创建bat文件，对于windows cmd，可以创建bat文件运行：
          ```
          @echo off
          call %pathtoPython%\python.exe "%pathtosrc%\main.py"
