@@ -45,9 +45,9 @@ response = get_web(yx_url)
 yx=response.json()
 
 bjdm=[]
-for nr in yx["rqpkjgallList"]:
-	if nr["bjdm"] not in set(bjdm):
-		bjdm.append(nr["bjdm"])
+for nr in yx["xkjgList"]:
+	if (nr["BJDM"] not in set(bjdm)) & ("MXMK" not in nr["BJDM"]):
+		bjdm.append(nr["BJDM"])
 
 base_url="https://yjsxk.buaa.edu.cn/yjsxkapp/sys/xsxkappbuaa/xsxkCourse/loadAllCourseInfo.do?"
 timestamp = int(time.time() * 1000)
@@ -58,11 +58,11 @@ courses = course.json()
 
 bjdm_set = set(bjdm)
 
-head = ["课程名称", "学分", "线下容量", "线上容量", "已选"]
+head = ["课程名称", "授课教师", "学分", "线下容量", "线上容量", "已选"]
 cours=[]
 for course in courses["datas"]:
     if course["BJDM"] in bjdm_set:
-        cours.append([course['KCMC'],course['KCXF'],course['KXRS'], course['XSRL'],course['YXXKJGRS']])
+        cours.append([course['KCMC'], course['RKJS'], course['KCXF'], course['KXRS'], course['XSRL'], course['YXXKJGRS']])
 
 print(tabulate(cours, head, tablefmt="fancy_grid"))
 session.close()
